@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imóvel Guide</title>
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kite+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+   <header class="header-main">
+    <nav class="header-sm">
+        <div class="main-nav">
+            <img src="img/logo-imovel-guide.png" alt="Imóvel Guide Logo">
+            <button id="btn-hamburger" class="" onclick="toggleHamburgerMenu();"><i class="ph ph-list"></i></button>
+            <ul class=" hidden desktop-l-menu">
+                <a href=""><li>Condomínios</li></a>
+                <a href=""><li>Fórum</li></a>
+                <a href=""><li>Guia</li></a>
+                <a href=""><li>Artigos</li></a>
+                <a href=""><li>Ferramentas</li></a>
+            </ul>
+        </div>
+        <ul class="hidden desktop-r-menu">
+            <a href=""><li>Cotar Imóvel</li></a>
+            <a href=""><li>Planos</li></a>
+            <a href=""><li>Entrar</li></a>
+            <a href=""><li>Cadastre-se</li></a>
+        </ul>
+    </nav>
+    <div class="hidden hambuger-overlay">
+        <nav id="hamburger-menu">
+            <span><i class="ph ph-x" onclick="toggleHamburgerMenu();"></i></span> 
+            <ul>
+                <a href=""><li>Condomínios</li></a>
+                <a href=""><li>Fórum</li></a>
+                <a href=""><li>Guia</li></a>
+                <a href=""><li>Artigos</li></a>
+                <a href=""><li>Ferramentas</li></a>
+                <hr>
+                <a href=""><li>Cotar Imóvel</li></a>
+                <a href=""><li>Planos</li></a>
+                <a href=""><li>Entrar</li></a>
+                <a href=""><li>Cadastre-se</li></a>
+            </ul>
+        </nav>    
+    </div>
+
+   </header> 
+
+   <main class="main-home">
+       <section class="sec-container">
+           <div class="sec-content">        
+                <div class="broker">
+                    <div class="broker-img">
+                        <img src="img/profile/broker1.png">
+                        <img src="img/profile/broker1.png"> 
+                    </div>
+                    <div class="broker-info">
+                        <h3>Nome Corretora</h3>
+                        <h5>3.000 pontos</h5>
+                        <span onclick="showPhone(event, '99999999999');" href="">ver telefone</span>
+                    </div>
+                </div>
+                <div class="broker">
+                    <div class="broker-img">
+                        <img src="img/profile/broker2.png">
+                        <img src="img/profile/broker2.png">
+                    </div>
+                    <div class="broker-info">
+                        <h3>Nome Corretor</h3>
+                        <h5>1.250 pontos</h5>
+                        <span onclick="showPhone(event, '88888888888');" href="">ver telefone</span>
+                    </div>
+                </div>
+           </div>
+       </section>
+
+       <section class="sec-container">
+            <div class="sec-content">
+                <h2 class="sec-title">Mande uma mensagem</h2>
+                <form id="formcontact" class="msgform" method="post" action="">
+                        <input id="cpf" onkeydown="cpfMask(event);" type="text" placeholder="Digite seu CPF" value="" maxlength="14">
+                        <input id="phone" onkeydown="phoneMask(event);" type="phone" placeholder="Digite seu telefone" maxlength="15">
+                        <textarea id="subject" maxlength="250" placeholder="Digite o assunto"></textarea>
+                        <button onclick="sendMessage(event);">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+
+       <section class="sec-container">
+            <div class="sec-content">
+                <h2 class="sec-title">Regra de 3</h2>
+
+                <form method="post" action="" class="ruleofthree">
+                    <div class="form-row">
+                        <input id="a" type="text" placeholder="60"> <hr> <input id="c" type="text" placeholder="100">
+                    </div>
+                    <div class="form-row">
+                        <input id="b" type="text" placeholder="30"> <hr> <input style="border: solid 2px #FE6613;" readonly id='x' type="text" placeholder="">
+                    </div>
+                    <button onclick="ruleOfThree(event)">Calcular</button>
+                </form>
+            </div>
+        </section>
+        
+        <div class="sec-container-lg">
+            <section style="width: 100%;" class="sec-container">
+                <div style="margin: 1em;" class="sec-content">
+                    <img class="modal-img" src="img/house-1.jpg">
+                </div>
+            </section>
+            <div id="modal-view" class="hidden modal-img-show">
+                <div class="modal-img-show-card">
+                    <div class="modal-img-show-title">
+                        <i class="ph ph-x" onclick="toggleModalView();"></i>
+                    </div>
+                    <img src="img/house-1.jpg"> 
+                </div>
+            </div>
+            <button onclick="toggleModalView();" class="sec-btn-action">Abrir imagem no modal</button>
+        </div>
+
+        <div  class="sec-container-lg">
+            <section style="width: 100%;" class="sec-container">
+                <div id="capture" style="position: relative; margin: 1em;" class="sec-content">
+                    <img class="modal-img" src="img/house-1.jpg">
+                    <div class="img-title">Imovel guide</div>
+                </div>
+            </section> 
+            <button onclick="download();" class="sec-btn-action">Download</button>
+        </div>
+
+        <script>
+            async function download(){
+                html2canvas(document.getElementById('capture'), {
+                }).then(function(canvas) {
+                    var imgData;
+                    try {
+                        imgData = canvas.toDataURL('image/png');                        
+                    } catch (error) {
+                        alert("Ops, parece que você está executando o index.html diretamente no browser.\nExecute em um servidor local. Por exemplo: Five Server (VSCodium)") 
+                        return
+                    }
+
+                  var a = document.createElement('a');
+                  a.href = imgData;
+                  a.download = 'screenshot.png';
+
+                  a.click();
+                });
+            }
+
+        </script>
+
+        <section class="sec-container">
+            <div style="margin: 1em; border: none; height: fit-content;" class="sec-content">
+                <img class="zoom-out modal-img" src="img/house-1.jpg">
+            </div>
+        </section>    
+   </main>
+
+    <footer class="footer">
+        <div class="hidden footer-desktop">
+                <ul>
+                    <a href=""><li class="">Termos</li></a>
+                    <a href=""><li class="">Contatos</li></a>
+                    <a href=""><li class="">Sobre</li></a>
+                </ul>
+        </div>
+        <div class="footer-sm">
+            <h3>© Copyright 2022. Todos os direitos reservados.</h3>
+            <img src="img/logo-imovel-guide.png">
+        </div>
+    </footer>
+</body>
+</html>
